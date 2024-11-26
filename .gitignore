@@ -1,0 +1,6 @@
+node_modules
+.next
+.vercel
+.env.local
+.env.vitest
+ecommerce-backend-484ef-firebase-adminsdk-u5s47-6bb273a941
