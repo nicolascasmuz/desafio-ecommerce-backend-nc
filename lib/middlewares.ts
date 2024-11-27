@@ -2,8 +2,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import parseBearerToken from "parse-bearer-token";
 import { decode } from "lib/jwt";
 
-function authMiddleware(req: NextApiRequest, res: NextApiResponse, callback) {
+async function authMiddleware(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  callback
+) {
   const token = parseBearerToken(req);
+
   if (!token) {
     res.status(401).json({ message: "no token" });
   }
@@ -11,10 +16,11 @@ function authMiddleware(req: NextApiRequest, res: NextApiResponse, callback) {
   const decodedToken = decode(token);
 
   if (decodedToken) {
-    const userData = callback(decodedToken);
+    const userData = await callback(decodedToken);
+    res.status(200).json(userData);
     return userData;
   } else {
-    return { message: "incorrect token" };
+    res.status(401).json({ message: "incorrect token" });
   }
 }
 

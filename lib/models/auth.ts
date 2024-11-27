@@ -29,9 +29,9 @@ class Auth {
       null;
     }
   }
-  static async createAuth(userData, userID) {
+  static async createAuth(email, userID) {
     const newDoc = await collection.add({
-      email: userData.email,
+      email,
       code: "",
       expired: "",
       userID,

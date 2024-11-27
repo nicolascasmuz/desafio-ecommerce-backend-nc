@@ -7,7 +7,9 @@ import gen from "random-seed";
 var seed = "auth-code";
 var random = gen.create(seed);
 
-async function findOrCreateAuth(email: string) {
+async function findOrCreateAuth(body) {
+  const { email } = body;
+
   const cleanEmail = email.trim().toLocaleLowerCase();
   const splitEmail = email.split("@")[0];
 
@@ -33,8 +35,9 @@ async function findOrCreateAuth(email: string) {
 
     return auth.data;
   } else {
-    const { userData, userID } = await User.createNewUser(cleanEmail);
-    const newAuth = await Auth.createAuth(userData, userID);
+    body.userData.nickname = splitEmail;
+    const { userEmail, userID } = await User.createNewUser(body);
+    const newAuth = await Auth.createAuth(userEmail, userID);
     const auth = await Auth.findByEmail(newAuth.email);
 
     const code = random.intBetween(10000, 99999);
@@ -56,6 +59,12 @@ async function findOrCreateAuth(email: string) {
 
     return auth.data;
   }
+}
+
+async function findByEmailAndCode(email: string, code: number) {
+  const token = await Auth.findByEmailAndCode(email, code);
+
+  return token;
 }
 
 async function sendCode(email: string) {
@@ -86,4 +95,4 @@ async function sendCode(email: string) {
   }
 }
 
-export { findOrCreateAuth, sendCode };
+export { findOrCreateAuth, findByEmailAndCode, sendCode };
