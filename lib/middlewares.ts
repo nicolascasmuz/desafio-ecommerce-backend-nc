@@ -17,7 +17,6 @@ async function authMiddleware(
 
   if (decodedToken) {
     const userData = await callback(decodedToken);
-    res.status(200).json(userData);
     return userData;
   } else {
     res.status(401).json({ message: "incorrect token" });

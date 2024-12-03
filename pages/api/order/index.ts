@@ -1,25 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { authMiddleware } from "lib/middlewares";
-import { User } from "lib/models/user";
 import methods from "micro-method-router";
-import { createNewOrder } from "lib/controllers/order";
-import { createPreference } from "lib/mercadopago";
 import * as yup from "yup";
+import { authMiddleware } from "lib/middlewares";
+import { productsIndex } from "lib/algolia";
+import { createPreference } from "lib/mercadopago";
+import { createNewOrder } from "lib/controllers/order";
+import { handler } from "lib/controllers/user";
 
 let querySchema = yup.object({
-  productID: yup.number().required(),
+  productID: yup.string().required(),
 });
 
 let bodySchema = yup.object({
-  items: yup.array().required(),
+  items: yup.array(),
 });
-
-async function handler(token) {
-  const user = new User(token.userID);
-  await user.pull();
-
-  return { userData: user.data, userID: token.userID };
-}
 
 export default methods({
   async post(req: NextApiRequest, res: NextApiResponse) {
@@ -38,9 +32,20 @@ export default methods({
     const { productID } = req.query;
     const { userID } = await authMiddleware(req, res, handler);
 
-    const newOrder = await createNewOrder(req.body, productID, userID);
-    const preference = await createPreference(req.body);
+    try {
+      const foundProduct = await productsIndex.getObject(productID.toString());
+      const { aditional_info, orderData, orderID } = await createNewOrder(
+        foundProduct,
+        productID,
+        userID
+      );
+      const preference = await createPreference(aditional_info);
 
-    res.status(200).json({ init_point: preference.init_point, newOrder });
+      res
+        .status(200)
+        .json({ init_point: preference.init_point, orderData, orderID });
+    } catch (error) {
+      res.status(400).json({ message: "product not found" });
+    }
   },
 });

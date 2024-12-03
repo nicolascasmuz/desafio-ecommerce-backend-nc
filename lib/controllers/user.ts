@@ -4,7 +4,7 @@ async function handler(decodedToken) {
   const user = new User(decodedToken.userID);
   await user.pull();
 
-  return user.data;
+  return { userData: user.data, userID: decodedToken.userID };
 }
 
 async function updateData(body) {

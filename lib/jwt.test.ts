@@ -7,8 +7,5 @@ test("jwt encode/decode", () => {
   const decodedToken: any = decode(encodedToken);
   delete decodedToken.iat;
 
-  console.log("token: ", token);
-  console.log("decodedToken: ", decodedToken);
-
   expect(decodedToken).toStrictEqual(token);
 });
