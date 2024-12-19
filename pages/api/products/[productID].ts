@@ -2,29 +2,41 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
 import * as yup from "yup";
 import { productsIndex } from "lib/algolia";
+import Cors from "cors";
 
 let querySchema = yup.object({
   productID: yup.string().required(),
 });
 
-// Configuración del middleware CORS
-function setCorsHeaders(res: NextApiResponse) {
-  res.setHeader("Access-Control-Allow-Origin", "*"); // Permitir solicitudes de cualquier origen
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS"); // Métodos permitidos
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Encabezados permitidos
+const emailSchema = yup.object({
+  email: yup.string().required(),
+});
+
+const cors = Cors({
+  methods: ["GET", "POST", "PATCH", "OPTIONS", "HEAD"],
+});
+
+function runMiddleware(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  fn: Function
+) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
 }
 
-export default async function handlerWithCors(
+export default async function corsHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  setCorsHeaders(res);
-
-  // Manejo de preflight requests (solicitudes OPTIONS)
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  }
+  await runMiddleware(req, res, cors);
 
   await methods({
     async get(req: NextApiRequest, res: NextApiResponse) {
