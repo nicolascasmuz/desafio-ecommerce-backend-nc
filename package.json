@@ -15,6 +15,7 @@
   "dependencies": {
     "airtable": "^0.12.2",
     "algoliasearch": "^4.17.1",
+    "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
     "esbuild-node-loader": "^0.8.0",
