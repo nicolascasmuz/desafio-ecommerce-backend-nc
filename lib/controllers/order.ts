@@ -7,23 +7,22 @@ async function createNewOrder(productInfo, productID, userID) {
         id: productInfo.objectID,
         title: productInfo.name,
         description: "",
-        picture_url: productInfo.pic,
-        category_id: "",
         quantity: 1,
         currency_id: "ARS",
         unit_price: productInfo.price,
-        stock: productInfo.stock,
-        brand: productInfo.marca,
       },
     ],
+    payer: {
+      userID,
+    },
     back_urls: {
       success: "https://test.com/success",
       pending: "https://test.com/pending",
       failure: "https://test.com/failure",
     },
-    external_reference: "1643827245",
+    external_reference: productID,
     notification_url:
-      "https://webhook.site/dc6c5ca9-253c-4cde-a967-fc1991154b62",
+      "https://webhook.site/645e0b34-3f0d-4f3b-814e-72d2134ebe6f",
   };
 
   const { orderData, orderID } = await Order.createNewOrder({

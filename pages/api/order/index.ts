@@ -45,7 +45,7 @@ export default methods({
         .status(200)
         .json({ init_point: preference.init_point, orderData, orderID });
     } catch (error) {
-      res.status(400).json({ message: "product not found" });
+      res.status(400).json({ error, message: "product not found" });
     }
   },
 });

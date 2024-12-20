@@ -1,34 +1,27 @@
 import {
   MercadoPagoConfig,
   MerchantOrder,
-  Preference,
   Payment,
+  Preference,
 } from "mercadopago";
 
 const client = new MercadoPagoConfig({
   accessToken: process.env.MP_TOKEN,
+  options: { timeout: 5000, idempotencyKey: "abc" },
 });
-
-const merchantOrder = new MerchantOrder(client);
-
-export async function getMerchantOrder(merchantOrderID) {
-  console.log("merchantOrderID: ", merchantOrderID, typeof merchantOrderID);
-  const orderRes = await merchantOrder.get(merchantOrderID);
-  console.log("orderRes: ", orderRes);
-
-  return orderRes;
-}
-
-const payment = new Payment(client);
-
-export async function getPayment(paymentID) {
-  const paymentRes = await payment.get(paymentID);
-  return paymentRes;
-}
 
 const preference = new Preference(client);
 
 export async function createPreference(body) {
-  const preferenceRes = await preference.create({ body });
-  return preferenceRes;
+  return preference.create({ body });
+}
+
+export async function getMerchantOrder(merchantOrderID) {
+  const merchantOrder = new MerchantOrder(client);
+  return merchantOrder.get(merchantOrderID);
+}
+
+export async function getPayment(paymentID) {
+  const payment = new Payment(client);
+  return payment.get(paymentID);
 }
