@@ -30,7 +30,7 @@ export default async function corsHandler(
 ) {
   await runMiddleware(req, res, cors);
 
-  methods({
+  await methods({
     async get(req: NextApiRequest, res: NextApiResponse) {
       const { q } = req.query;
 
