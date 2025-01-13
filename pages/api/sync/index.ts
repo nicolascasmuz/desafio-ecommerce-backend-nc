@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { airtableBase } from "lib/airtable";
-import { productsIndex } from "lib/algolia";
+import { airtableBase } from "lib/airtable-nicos";
+import { productsIndex } from "lib/algolia-nicos";
 import methods from "micro-method-router";
 
 export default methods({
   async post(req: NextApiRequest, res: NextApiResponse) {
     const { pagesize } = req.query;
 
-    airtableBase("my-products")
+    airtableBase("catalogo")
       .select({
         pageSize: Number(pagesize),
       })

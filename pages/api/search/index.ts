@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { productsIndex } from "lib/algolia";
+import { productsIndex } from "lib/algolia-nicos";
 import { getOffsetAndLimit } from "lib/requests";
 import Cors from "cors";
 
