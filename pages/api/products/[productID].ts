@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
 import * as yup from "yup";
-import { productsIndex } from "lib/algolia";
+import { productsIndex } from "lib/algolia-nicos";
 import Cors from "cors";
 
 let querySchema = yup.object({
