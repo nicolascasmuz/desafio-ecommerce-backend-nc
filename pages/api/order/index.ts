@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
 import * as yup from "yup";
 import { authMiddleware } from "lib/middlewares";
-import { productsIndex } from "lib/algolia";
+import { productsIndex } from "lib/algolia-nicos";
 import { createPreference } from "lib/mercadopago";
 import { createNewOrder } from "lib/controllers/order";
 import { handler } from "lib/controllers/user";
