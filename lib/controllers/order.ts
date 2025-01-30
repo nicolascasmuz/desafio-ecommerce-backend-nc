@@ -6,7 +6,7 @@ async function createNewOrder(productInfo, productID, userID) {
       {
         id: productInfo.objectID,
         title: productInfo.name,
-        description: "",
+        description: productInfo.description,
         quantity: 1,
         currency_id: "ARS",
         unit_price: productInfo.price,
@@ -22,7 +22,7 @@ async function createNewOrder(productInfo, productID, userID) {
     },
     external_reference: productID,
     notification_url:
-      "https://webhook.site/645e0b34-3f0d-4f3b-814e-72d2134ebe6f",
+      "https://webhook.site/5f3d3c05-5c2c-4908-8000-6ef62a0b8584",
   };
 
   const { orderData, orderID } = await Order.createNewOrder({
