@@ -4,7 +4,14 @@ import { getPaymentById } from "lib/mercadopago";
 
 export default methods({
   async post(req: NextApiRequest, res: NextApiResponse) {
-    const data = await getPaymentById(req.query.id);
-    res.send({ data });
+    const payload = req.body;
+
+    if (payload.type === "payment") {
+      const mpPayment = await getPaymentById(payload.data.id);
+
+      if (mpPayment.status === "approved") {
+        res.send(mpPayment);
+      }
+    }
   },
 });
