@@ -3,7 +3,6 @@ import methods from "micro-method-router";
 import * as yup from "yup";
 import { authMiddleware } from "lib/middlewares";
 import { productsIndex } from "lib/algolia-nicos";
-import { createPreference } from "lib/mercadopago";
 import { createNewOrder } from "lib/controllers/order";
 import { handler } from "lib/controllers/user";
 import Cors from "cors";
@@ -60,15 +59,23 @@ export default async function corsHandler(
       const { userID } = await authMiddleware(req, res, handler);
 
       try {
-        const foundProduct = await productsIndex.getObject(
+        const foundProduct: any = await productsIndex.getObject(
           productID.toString()
         );
-        const { aditional_info, orderData, orderID } = await createNewOrder(
-          foundProduct,
+
+        const options = {
+          name: foundProduct.name,
+          description: foundProduct.description,
+          objectID: foundProduct.objectID,
+          price: foundProduct.price,
+          userID: userID,
+        };
+
+        const { preference, orderData, orderID } = await createNewOrder(
+          options,
           productID,
           userID
         );
-        const preference = await createPreference(aditional_info);
 
         res
           .status(200)
