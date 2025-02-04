@@ -1,4 +1,5 @@
 import { MercadoPagoConfig, Payment, Preference } from "mercadopago";
+import { v4 as uuidv4 } from "uuid";
 
 const client = new MercadoPagoConfig({
   accessToken: process.env.MP_TOKEN,
@@ -13,12 +14,6 @@ type CreatePrefOptions = {
   price: number;
   userID: string;
 };
-
-// Recibimos data más generica en esta función
-// para abstraer al resto del sistema
-// de los detalles de mercado pago
-// esto nos permitirá hacer cambios dentro de esta librería
-// sin tener que modificar el resto del sistema
 
 export async function createSingleProductPreference(
   options: CreatePrefOptions
@@ -38,15 +33,14 @@ export async function createSingleProductPreference(
       payer: {
         email: options.userID,
       },
-      // URL de redirección en los distintos casos
       back_urls: {
         success: "https://test.com/success",
         failure: "https://test.com/failure",
         pending: "https://test.com/pending",
       },
-      // Esto puede ser el id o algún otro identificador
-      // que te ayude a vincular este pago con el producto más adelante
-      external_reference: options.objectID,
+      external_reference: uuidv4().slice(30),
+      notification_url:
+        "https://webhook.site/fce9186e-a231-425a-baf8-85e160ba3379",
     },
   });
 }

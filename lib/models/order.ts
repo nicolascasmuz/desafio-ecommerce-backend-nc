@@ -23,6 +23,30 @@ class Order {
 
     return { orderData, orderID };
   }
+  static async updateOrder(external_reference, status) {
+    const result = await collection
+      .where("preference.external_reference", "==", external_reference)
+      .get();
+
+    if (result.docs.length) {
+      const firstDoc = result.docs[0];
+      const docData = firstDoc.data();
+      const docRef = firstDoc.ref;
+
+      const updatedData = {
+        preference: docData.preference,
+        productID: docData.productID,
+        status: status ? status : docData.status,
+        userID: docData.userID,
+      };
+
+      await docRef.update(updatedData);
+      const updatedDoc = await docRef.get();
+      return updatedDoc.data();
+    } else {
+      return "no funciona";
+    }
+  }
 }
 
 export { Order };
