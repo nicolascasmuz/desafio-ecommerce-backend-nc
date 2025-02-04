@@ -39,8 +39,6 @@ export async function createSingleProductPreference(
         pending: "https://test.com/pending",
       },
       external_reference: uuidv4().slice(30),
-      notification_url:
-        "https://webhook.site/fce9186e-a231-425a-baf8-85e160ba3379",
     },
   });
 }
