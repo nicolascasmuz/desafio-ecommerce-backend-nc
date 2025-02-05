@@ -41,7 +41,7 @@ class User {
           nickname: body.userData.nickname
             ? body.userData.nickname
             : docData.userData.nickname,
-          age: body.userData.age ? body.userData.age : docData.userData.age,
+          sex: body.userData.age ? body.userData.sex : docData.userData.sex,
           birth: body.userData.birth
             ? body.userData.birth
             : docData.userData.birth,
