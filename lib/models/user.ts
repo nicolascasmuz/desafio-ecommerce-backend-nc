@@ -42,12 +42,9 @@ class User {
             ? body.userData.nickname
             : docData.userData.nickname,
           age: body.userData.age ? body.userData.age : docData.userData.age,
-          weight: body.userData.weight
-            ? body.userData.weight
-            : docData.userData.weight,
-          height: body.userData.height
-            ? body.userData.height
-            : docData.userData.height,
+          birth: body.userData.birth
+            ? body.userData.birth
+            : docData.userData.birth,
         },
         address: docData.address,
       };

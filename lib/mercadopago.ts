@@ -38,7 +38,7 @@ export async function createSingleProductPreference(
         failure: "https://test.com/failure",
         pending: "https://test.com/pending",
       },
-      external_reference: uuidv4().slice(30),
+      external_reference: uuidv4().slice(26),
     },
   });
 }
