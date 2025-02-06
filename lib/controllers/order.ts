@@ -26,7 +26,7 @@ async function updateOrder(external_reference, status) {
 
 async function getOrders(req) {
   const token = parseBearerToken(req);
-  const decodedToken = decode(token);
+  const decodedToken: any = decode(token);
 
   const orders = await Order.getOrders(decodedToken.userID);
 
