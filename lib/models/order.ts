@@ -44,7 +44,23 @@ class Order {
       const updatedDoc = await docRef.get();
       return updatedDoc.data();
     } else {
-      return "no funciona";
+      return null;
+    }
+  }
+  static async getOrders(userID) {
+    const result = await collection.where("userID", "==", userID).get();
+
+    if (result.docs.length) {
+      const allDocs = result.docs;
+
+      const orders = allDocs.map((d) => {
+        const docData = d.data();
+        return docData;
+      });
+
+      return orders;
+    } else {
+      return null;
     }
   }
 }

@@ -1,5 +1,7 @@
 import { Order } from "lib/models/order";
 import { createSingleProductPreference } from "lib/mercadopago";
+import parseBearerToken from "parse-bearer-token";
+import { decode } from "lib/jwt";
 
 async function createNewOrder(options, productID, userID) {
   const preference = await createSingleProductPreference(options);
@@ -22,4 +24,13 @@ async function updateOrder(external_reference, status) {
   return updatedOrder;
 }
 
-export { createNewOrder, updateOrder };
+async function getOrders(req) {
+  const token = parseBearerToken(req);
+  const decodedToken = decode(token);
+
+  const orders = await Order.getOrders(decodedToken.userID);
+
+  return orders;
+}
+
+export { createNewOrder, updateOrder, getOrders };
