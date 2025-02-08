@@ -65,6 +65,7 @@ export default async function corsHandler(
 
         const options = {
           name: foundProduct.name,
+          pic: foundProduct.pic,
           description: foundProduct.description,
           objectID: foundProduct.objectID,
           price: foundProduct.price,

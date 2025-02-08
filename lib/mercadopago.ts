@@ -9,6 +9,7 @@ const pref = new Preference(client);
 
 type CreatePrefOptions = {
   name: string;
+  pic: string;
   description: string;
   objectID: string;
   price: number;
@@ -24,6 +25,7 @@ export async function createSingleProductPreference(
         {
           id: options.objectID,
           title: options.name,
+          picture_url: options.pic,
           description: options.description,
           quantity: 1,
           currency_id: "ARS",
