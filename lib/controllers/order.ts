@@ -33,4 +33,10 @@ async function getOrders(req) {
   return orders;
 }
 
-export { createNewOrder, updateOrder, getOrders };
+async function getOrderByID(external_reference) {
+  const order = await Order.getOrderByID(external_reference);
+
+  return order;
+}
+
+export { createNewOrder, updateOrder, getOrders, getOrderByID };
