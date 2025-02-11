@@ -4,7 +4,7 @@ import { deleteOrder, getOrderByID } from "lib/controllers/order";
 import Cors from "cors";
 
 const cors = Cors({
-  methods: ["GET", "POST", "PATCH", "OPTIONS", "HEAD"],
+  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "HEAD"],
 });
 
 function runMiddleware(
