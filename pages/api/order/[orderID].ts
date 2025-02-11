@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import { getOrderByID } from "lib/controllers/order";
+import { deleteOrder, getOrderByID } from "lib/controllers/order";
 import Cors from "cors";
 
 const cors = Cors({
@@ -35,6 +35,12 @@ export default async function corsHandler(
 
       const order = await getOrderByID(orderID);
       res.status(200).json(order);
+    },
+    async delete(req: NextApiRequest, res: NextApiResponse) {
+      const { orderID } = req.query;
+
+      const deletedOrder = await deleteOrder(orderID);
+      res.status(200).json(deletedOrder);
     },
   })(req, res);
 }

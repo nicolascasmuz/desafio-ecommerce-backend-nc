@@ -39,4 +39,10 @@ async function getOrderByID(external_reference) {
   return order;
 }
 
-export { createNewOrder, updateOrder, getOrders, getOrderByID };
+async function deleteOrder(external_reference) {
+  const deletedOrder = await Order.deleteOrder(external_reference);
+
+  return deletedOrder;
+}
+
+export { createNewOrder, updateOrder, getOrders, getOrderByID, deleteOrder };

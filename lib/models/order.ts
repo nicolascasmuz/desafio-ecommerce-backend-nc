@@ -77,6 +77,21 @@ class Order {
       return null;
     }
   }
+  static async deleteOrder(external_reference) {
+    const result = await collection
+      .where("preference.external_reference", "==", external_reference)
+      .get();
+
+    if (result.docs.length) {
+      const firstDoc = result.docs[0];
+      const docRef = firstDoc.ref;
+
+      const deletedDoc = await docRef.delete();
+      return { message: "order successfully deleted", deletedDoc };
+    } else {
+      return null;
+    }
+  }
 }
 
 export { Order };

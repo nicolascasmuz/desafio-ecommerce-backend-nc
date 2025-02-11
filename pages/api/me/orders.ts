@@ -1,13 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import methods from "micro-method-router";
-import * as yup from "yup";
-import { authMiddleware } from "lib/middlewares";
 import { getOrders } from "lib/controllers/order";
 import Cors from "cors";
-
-/* const emailSchema = yup.object({
-  email: yup.string().required(),
-}); */
 
 const cors = Cors({
   methods: ["GET", "POST", "PATCH", "OPTIONS", "HEAD"],
