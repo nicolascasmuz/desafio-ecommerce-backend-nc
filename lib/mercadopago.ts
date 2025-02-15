@@ -36,7 +36,7 @@ export async function createSingleProductPreference(
         email: options.userID,
       },
       back_urls: {
-        success: "https://test.com/success",
+        success: "https://nicos-instruments-3.0.app/successful-purchase",
         failure: "https://test.com/failure",
         pending: "https://test.com/pending",
       },
