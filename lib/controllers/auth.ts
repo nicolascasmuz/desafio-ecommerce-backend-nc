@@ -24,14 +24,26 @@ async function findOrCreateAuth(body) {
     auth.data.expired = twentyMinutesFromNow;
     await auth.push();
 
-    const msg = {
+    /* const msg = {
       from: "Nico's Instruments <onboarding@resend.dev>",
       to: email,
       subject: `Bienvenido/a ${splitEmail}`,
       html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
     };
 
-    resend.emails.send(msg);
+    resend.emails.send(msg); */
+
+    try {
+      const data = await resend.emails.send({
+        from: "Nico's Instruments <onboarding@resend.dev>", // Reemplaza con tu dirección de correo electrónico
+        to: [email],
+        subject: `Bienvenido/a ${splitEmail}`,
+        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
 
     return auth.data;
   } else {
@@ -48,14 +60,26 @@ async function findOrCreateAuth(body) {
     auth.data.expired = twentyMinutesFromNow;
     await auth.push();
 
-    const msg = {
+    /* const msg = {
       from: "Nico's Instruments <onboarding@resend.dev>",
       to: email,
       subject: `Bienvenido/a ${splitEmail}`,
       html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
     };
 
-    resend.emails.send(msg);
+    resend.emails.send(msg); */
+
+    try {
+      const data = await resend.emails.send({
+        from: "Nico's Instruments <onboarding@resend.dev>", // Reemplaza con tu dirección de correo electrónico
+        to: [email],
+        subject: `Bienvenido/a ${splitEmail}`,
+        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
 
     return auth.data;
   }
@@ -80,14 +104,26 @@ async function sendCode(email: string) {
     auth.data.expired = twentyMinutesFromNow;
     await auth.push();
 
-    const msg = {
+    /* const msg = {
       from: "Nico's Instruments <onboarding@resend.dev>",
       to: email,
       subject: `Bienvenido/a ${splitEmail}`,
       html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
     };
 
-    resend.emails.send(msg);
+    resend.emails.send(msg); */
+
+    try {
+      const data = await resend.emails.send({
+        from: "Nico's Instruments <onboarding@resend.dev>", // Reemplaza con tu dirección de correo electrónico
+        to: [email],
+        subject: `Bienvenido/a ${splitEmail}`,
+        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
+      });
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
 
     return auth.data;
   } else {
