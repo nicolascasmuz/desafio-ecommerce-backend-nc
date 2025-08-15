@@ -26,7 +26,7 @@ async function findOrCreateAuth(body) {
 
     const msg = {
       from: "Nico's Instruments <onboarding@resend.dev>",
-      to: cleanEmail,
+      to: email,
       subject: `Bienvenido/a ${splitEmail}`,
       html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
     };
@@ -49,8 +49,8 @@ async function findOrCreateAuth(body) {
     await auth.push();
 
     const msg = {
-      from: "onboarding@resend.dev",
-      to: "nicolascasmuz@gmail.com",
+      from: "Nico's Instruments <onboarding@resend.dev>",
+      to: email,
       subject: `Bienvenido/a ${splitEmail}`,
       html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
     };
@@ -81,8 +81,8 @@ async function sendCode(email: string) {
     await auth.push();
 
     const msg = {
-      from: "onboarding@resend.dev",
-      to: "nicolascasmuz@gmail.com",
+      from: "Nico's Instruments <onboarding@resend.dev>",
+      to: email,
       subject: `Bienvenido/a ${splitEmail}`,
       html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
     };
