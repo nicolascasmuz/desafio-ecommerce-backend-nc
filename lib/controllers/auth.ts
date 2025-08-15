@@ -24,19 +24,7 @@ async function findOrCreateAuth(body) {
     auth.data.expired = twentyMinutesFromNow;
     await auth.push();
 
-    /* try {
-      const data = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>",
-        to: email,
-        subject: `Bienvenido/a ${splitEmail}`,
-        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
-      });
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    } */
-
-    (async function () {
+    try {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
         to: email,
@@ -49,7 +37,24 @@ async function findOrCreateAuth(body) {
       }
 
       console.log({ data });
-    })();
+    } catch (error) {
+      console.error(error);
+    }
+
+    /* (async function () {
+      const { data, error } = await resend.emails.send({
+        from: "Nico's Instruments <onboarding@resend.dev>",
+        to: email,
+        subject: "Hello World",
+        html: "<strong>It works!</strong>",
+      });
+
+      if (error) {
+        return console.error({ error });
+      }
+
+      console.log({ data });
+    })(); */
 
     return auth.data;
   } else {
@@ -66,19 +71,7 @@ async function findOrCreateAuth(body) {
     auth.data.expired = twentyMinutesFromNow;
     await auth.push();
 
-    /* try {
-      const data = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>",
-        to: email,
-        subject: `Bienvenido/a ${splitEmail}`,
-        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
-      });
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    } */
-
-    (async function () {
+    try {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
         to: email,
@@ -91,7 +84,24 @@ async function findOrCreateAuth(body) {
       }
 
       console.log({ data });
-    })();
+    } catch (error) {
+      console.error(error);
+    }
+
+    /* (async function () {
+      const { data, error } = await resend.emails.send({
+        from: "Nico's Instruments <onboarding@resend.dev>",
+        to: email,
+        subject: "Hello World",
+        html: "<strong>It works!</strong>",
+      });
+
+      if (error) {
+        return console.error({ error });
+      }
+
+      console.log({ data });
+    })(); */
 
     return auth.data;
   }
@@ -116,19 +126,7 @@ async function sendCode(email: string) {
     auth.data.expired = twentyMinutesFromNow;
     await auth.push();
 
-    /* try {
-      const data = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>",
-        to: email,
-        subject: `Bienvenido/a ${splitEmail}`,
-        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
-      });
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    } */
-
-    (async function () {
+    try {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
         to: email,
@@ -141,7 +139,24 @@ async function sendCode(email: string) {
       }
 
       console.log({ data });
-    })();
+    } catch (error) {
+      console.error(error);
+    }
+
+    /* (async function () {
+      const { data, error } = await resend.emails.send({
+        from: "Nico's Instruments <onboarding@resend.dev>",
+        to: email,
+        subject: "Hello World",
+        html: "<strong>It works!</strong>",
+      });
+
+      if (error) {
+        return console.error({ error });
+      }
+
+      console.log({ data });
+    })(); */
 
     return auth.data;
   } else {
