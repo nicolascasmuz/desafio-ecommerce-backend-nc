@@ -35,8 +35,8 @@ async function findOrCreateAuth(body) {
 
     try {
       const data = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>", // Reemplaza con tu dirección de correo electrónico
-        to: [email],
+        from: "Nico's Instruments <onboarding@resend.dev>",
+        to: email,
         subject: `Bienvenido/a ${splitEmail}`,
         html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
       });
@@ -71,8 +71,8 @@ async function findOrCreateAuth(body) {
 
     try {
       const data = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>", // Reemplaza con tu dirección de correo electrónico
-        to: [email],
+        from: "Nico's Instruments <onboarding@resend.dev>",
+        to: email,
         subject: `Bienvenido/a ${splitEmail}`,
         html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
       });
@@ -115,8 +115,8 @@ async function sendCode(email: string) {
 
     try {
       const data = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>", // Reemplaza con tu dirección de correo electrónico
-        to: [email],
+        from: "Nico's Instruments <onboarding@resend.dev>",
+        to: email,
         subject: `Bienvenido/a ${splitEmail}`,
         html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
       });
