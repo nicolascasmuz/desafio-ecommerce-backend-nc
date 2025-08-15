@@ -39,7 +39,7 @@ async function findOrCreateAuth(body) {
     (async function () {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
-        to: [email],
+        to: email,
         subject: "Hello World",
         html: "<strong>It works!</strong>",
       });
@@ -81,7 +81,7 @@ async function findOrCreateAuth(body) {
     (async function () {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
-        to: [email],
+        to: email,
         subject: "Hello World",
         html: "<strong>It works!</strong>",
       });
@@ -131,7 +131,7 @@ async function sendCode(email: string) {
     (async function () {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
-        to: [email],
+        to: email,
         subject: "Hello World",
         html: "<strong>It works!</strong>",
       });
