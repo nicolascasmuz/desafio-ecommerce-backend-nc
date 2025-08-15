@@ -41,21 +41,6 @@ async function findOrCreateAuth(body) {
       console.error(error);
     }
 
-    /* (async function () {
-      const { data, error } = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>",
-        to: email,
-        subject: "Hello World",
-        html: "<strong>It works!</strong>",
-      });
-
-      if (error) {
-        return console.error({ error });
-      }
-
-      console.log({ data });
-    })(); */
-
     return auth.data;
   } else {
     body.userData.nickname = splitEmail;
@@ -87,21 +72,6 @@ async function findOrCreateAuth(body) {
     } catch (error) {
       console.error(error);
     }
-
-    /* (async function () {
-      const { data, error } = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>",
-        to: email,
-        subject: "Hello World",
-        html: "<strong>It works!</strong>",
-      });
-
-      if (error) {
-        return console.error({ error });
-      }
-
-      console.log({ data });
-    })(); */
 
     return auth.data;
   }
@@ -142,21 +112,6 @@ async function sendCode(email: string) {
     } catch (error) {
       console.error(error);
     }
-
-    /* (async function () {
-      const { data, error } = await resend.emails.send({
-        from: "Nico's Instruments <onboarding@resend.dev>",
-        to: email,
-        subject: "Hello World",
-        html: "<strong>It works!</strong>",
-      });
-
-      if (error) {
-        return console.error({ error });
-      }
-
-      console.log({ data });
-    })(); */
 
     return auth.data;
   } else {
