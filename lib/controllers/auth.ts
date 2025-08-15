@@ -28,8 +28,8 @@ async function findOrCreateAuth(body) {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
         to: [email],
-        subject: "Hello World",
-        html: "<strong>It works!</strong>",
+        subject: `Bienvenido/a ${splitEmail}`,
+        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
       });
 
       if (error) {
@@ -75,8 +75,8 @@ async function findOrCreateAuth(body) {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
         to: [email],
-        subject: "Hello World",
-        html: "<strong>It works!</strong>",
+        subject: `Bienvenido/a ${splitEmail}`,
+        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
       });
 
       if (error) {
@@ -130,8 +130,8 @@ async function sendCode(email: string) {
       const { data, error } = await resend.emails.send({
         from: "Nico's Instruments <onboarding@resend.dev>",
         to: [email],
-        subject: "Hello World",
-        html: "<strong>It works!</strong>",
+        subject: `Bienvenido/a ${splitEmail}`,
+        html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
       });
 
       if (error) {
