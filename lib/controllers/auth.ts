@@ -26,7 +26,7 @@ async function findOrCreateAuth(body) {
 
     const msg = {
       from: "onboarding@resend.dev",
-      to: cleanEmail,
+      to: email,
       subject: `Bienvenido/a ${splitEmail}`,
       html: `<p>Este es tu código de acceso, tienes 20 minutos para usarlo</p><h3>${code}</h3>`,
     };
